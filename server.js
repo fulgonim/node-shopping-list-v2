@@ -55,7 +55,7 @@ app.get('/recipes', (req, res) => {
 
 app.post('/recipes', jsonParser, (req, res) => {
   // ensure recipe and ingredients are in request body
-  const requiredFields = ['recipe', [ingredients]];
+  const requiredFields = ['recipe', 'ingredients'];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
@@ -65,7 +65,7 @@ app.post('/recipes', jsonParser, (req, res) => {
     }
   }
 
-  const item = Recipes.create(req.body.recipe, req.body.ingredients[]);
+  const item = Recipes.create(req.body.recipe, req.body.ingredients);
   res.status(201).json(item);
 })
 
